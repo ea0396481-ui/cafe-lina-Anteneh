@@ -1,0 +1,118 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Public Menu & Catalog (Publicly readable for storefront, writeable by authenticated staff)
+    match /menuItems/{itemId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
+    // Customer Orders & Reservations (Public/Guest can create, authenticated users can read/update)
+    match /orders/{orderId} {
+      allow read, create: if true;
+      allow update, delete: if isAuthenticated();
+    }
+
+    match /reservations/{reservationId} {
+      allow read, create: if true;
+      allow update, delete: if isAuthenticated();
+    }
+
+    match /customers/{customerId} {
+      allow read, write: if true;
+    }
+
+    // ERP Core Business Collections (Secured for authenticated staff & users)
+    match /inventory/{itemId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /suppliers/{supplierId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /purchaseOrders/{poId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /employees/{empId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /recipeCosts/{rcId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /eprRecords/{eprId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /categories/{catId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /stores/{storeId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /stockInVouchers/{voucherId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /storeRequests/{voucherId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /storeTransfers/{voucherId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /inventoryTransactions/{txId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /posReceipts/{receiptId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /binCards/{binId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /damageVouchers/{voucherId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /staffMeals/{mealId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /systemUsers/{userId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // User scoped private data
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+      
+      match /{allSubcollections=**} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Connection check document
+    match /_connection_test_/{docId} {
+      allow read, write: if true;
+    }
+  }
+}

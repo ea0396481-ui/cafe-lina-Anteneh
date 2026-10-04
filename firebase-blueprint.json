@@ -1,0 +1,231 @@
+{
+  "entities": {
+    "MenuItem": {
+      "collection": "menuItems",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "category": "string",
+        "price": "number",
+        "currency": "string",
+        "image": "string",
+        "description": "string",
+        "isAvailable": "boolean"
+      }
+    },
+    "Order": {
+      "collection": "orders",
+      "fields": {
+        "id": "string",
+        "customerName": "string",
+        "customerEmail": "string",
+        "customerPhone": "string",
+        "deliveryType": "string",
+        "items": "array",
+        "subtotal": "number",
+        "tax": "number",
+        "total": "number",
+        "status": "string",
+        "paymentStatus": "string"
+      }
+    },
+    "Reservation": {
+      "collection": "reservations",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "email": "string",
+        "phone": "string",
+        "date": "string",
+        "time": "string",
+        "guests": "number",
+        "status": "string"
+      }
+    },
+    "InventoryItem": {
+      "collection": "inventory",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "category": "string",
+        "brand": "string",
+        "sku": "string",
+        "stockQty": "number",
+        "unit": "string",
+        "reorderLevel": "number",
+        "costPerUnit": "number"
+      }
+    },
+    "Supplier": {
+      "collection": "suppliers",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "category": "string",
+        "contactPerson": "string",
+        "phone": "string",
+        "email": "string"
+      }
+    },
+    "PurchaseOrder": {
+      "collection": "purchaseOrders",
+      "fields": {
+        "id": "string",
+        "supplierId": "string",
+        "supplierName": "string",
+        "orderDate": "string",
+        "items": "array",
+        "totalAmount": "number",
+        "status": "string"
+      }
+    },
+    "Employee": {
+      "collection": "employees",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "role": "string",
+        "email": "string",
+        "phone": "string",
+        "salary": "number"
+      }
+    },
+    "RecipeCost": {
+      "collection": "recipeCosts",
+      "fields": {
+        "id": "string",
+        "menuItemId": "string",
+        "menuItemName": "string",
+        "ingredients": "array",
+        "totalCost": "number"
+      }
+    },
+    "EPRRecord": {
+      "collection": "eprRecords",
+      "fields": {
+        "id": "string",
+        "date": "string",
+        "type": "string",
+        "description": "string",
+        "impactMetrics": "string"
+      }
+    },
+    "Customer": {
+      "collection": "customers",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "email": "string",
+        "phone": "string",
+        "rewardPoints": "number",
+        "tier": "string"
+      }
+    },
+    "Category": {
+      "collection": "categories",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "code": "string"
+      }
+    },
+    "Store": {
+      "collection": "stores",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "location": "string",
+        "type": "string"
+      }
+    },
+    "StockInVoucher": {
+      "collection": "stockInVouchers",
+      "fields": {
+        "voucherId": "string",
+        "date": "string",
+        "supplierName": "string",
+        "targetStore": "string",
+        "items": "array",
+        "grandTotal": "number"
+      }
+    },
+    "StoreRequest": {
+      "collection": "storeRequests",
+      "fields": {
+        "voucherId": "string",
+        "date": "string",
+        "requestingStore": "string",
+        "targetStore": "string",
+        "department": "string",
+        "status": "string",
+        "items": "array"
+      }
+    },
+    "StoreTransfer": {
+      "collection": "storeTransfers",
+      "fields": {
+        "voucherId": "string",
+        "date": "string",
+        "fromStore": "string",
+        "toStore": "string",
+        "items": "array",
+        "status": "string"
+      }
+    },
+    "POSReceipt": {
+      "collection": "posReceipts",
+      "fields": {
+        "voucherId": "string",
+        "orderId": "string",
+        "date": "string",
+        "cashierName": "string",
+        "customerName": "string",
+        "grandTotal": "number",
+        "paymentMethod": "string"
+      }
+    },
+    "BinCard": {
+      "collection": "binCards",
+      "fields": {
+        "id": "string",
+        "inventoryId": "string",
+        "storeName": "string",
+        "date": "string",
+        "transactionType": "string",
+        "qtyIn": "number",
+        "qtyOut": "number",
+        "balanceAfter": "number"
+      }
+    },
+    "DamageVoucher": {
+      "collection": "damageVouchers",
+      "fields": {
+        "voucherId": "string",
+        "date": "string",
+        "reportedBy": "string",
+        "items": "array",
+        "grandTotal": "number"
+      }
+    },
+    "StaffMeal": {
+      "collection": "staffMeals",
+      "fields": {
+        "id": "string",
+        "date": "string",
+        "employeeName": "string",
+        "items": "array",
+        "totalValue": "number"
+      }
+    },
+    "SystemUser": {
+      "collection": "systemUsers",
+      "fields": {
+        "id": "string",
+        "username": "string",
+        "name": "string",
+        "role": "string",
+        "isActive": "boolean"
+      }
+    }
+  }
+}

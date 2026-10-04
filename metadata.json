@@ -1,0 +1,6 @@
+{
+  "name": "Cafe Lina - Luxury Coffee & ERP System",
+  "description": "Full-stack luxury coffee shop website, online ordering, customer portal, admin dashboard, and ERP system for Cafe Lina.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

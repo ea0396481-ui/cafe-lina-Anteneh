@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary: #D4AF37;
+    --secondary: #F6C453;
+    --accent: #F6C453;
+    --gold: #D4AF37;
+    --background: #0F172A;
+    --sidebar: #111827;
+    --surface: #1E293B;
+    --card: #243244;
+    --button: #D4AF37;
+    --text: #F8FAFC;
+    --text-secondary: #CBD5E1;
+    --text-muted: #94A3B8;
+    --border: rgba(255, 255, 255, 0.08);
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --info: #3B82F6;
+    --radius: 22px;
+    --shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+
+    --primary-burgundy: #6B1D1D;
+    --primary-dark-burgundy: #3E0E0E;
+    --secondary-cream: #0f0f0f;
+    --secondary-warm-cream: #181818;
+    --accent-gold: #D4AF37;
+    --accent-dark-gold: #B38F29;
+    --neutral-dark: #FDF5E6;
+    --neutral-subtle: #A8A095;
+  }
+
+  body {
+    background-color: var(--background, #0F172A);
+    color: var(--text, #F8FAFC);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sidebar, #111827);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface, #1E293B);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold, #D4AF37);
+}
+
+/* Theme helper utility classes */
+.theme-card {
+  background-color: var(--card, #243244);
+  border-radius: var(--radius, 22px);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+  box-shadow: var(--shadow, 0 12px 30px rgba(0, 0, 0, 0.35));
+}
+
+.theme-surface {
+  background-color: var(--surface, #1E293B);
+  border-radius: var(--radius, 22px);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+}
+
+.theme-btn-primary {
+  background-color: var(--button, #D4AF37);
+  color: #0F172A;
+  font-weight: 700;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.theme-btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+  transform: translateY(-1px);
+}
+
+.theme-btn-secondary {
+  background-color: var(--surface, #1E293B);
+  color: var(--gold, #D4AF37);
+  border: 1px solid var(--gold, #D4AF37);
+  font-weight: 700;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.theme-btn-secondary:hover {
+  background-color: var(--card, #243244);
+  transform: translateY(-1px);
+}
+
+/* Glassmorphism utility for dark theme */
+.glass-panel {
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+}
+
+.glass-panel-dark {
+  background: rgba(17, 24, 39, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border, rgba(255, 255, 255, 0.08));
+}
+
+/* Gold glow */
+.gold-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+@keyframes steam {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-20px) scaleX(1.3);
+    opacity: 0;
+  }
+}
+
+.animate-steam {
+  animation: steam 2.5s infinite ease-out;
+}
+
+/* Container shown only when printing */
+.menu-print-container-wrapper {
+  display: none;
+}
+
+/* =========================================================
+   PROFESSIONAL PRINT & A4 STYLES FOR RESTAURANT MENU
+   ========================================================= */
+@media print {
+  .menu-print-container-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide standard website UI and ERP sidebars/headers */
+  nav,
+  footer,
+  header,
+  aside,
+  .no-print,
+  #cart-drawer,
+  .cart-drawer-overlay,
+  .fixed:not(.printable-modal),
+  button:not(.allow-print) {
+    display: none !important;
+  }
+
+  main {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #1a1a1a !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 12mm 10mm 15mm 10mm;
+  }
+
+  .print-page-container {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .avoid-break-inside {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .category-print-header {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  /* Force borders and background colors to print faithfully */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+
+
